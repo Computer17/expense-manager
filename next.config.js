@@ -1,11 +1,21 @@
 /** @type {import('next').NextConfig} */
+
+const path = require("path");
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+
   images: {
     unoptimized: true,
   },
-  output: 'export', // ভার্সেল স্ট্যাটিক হোস্টিংয়ের জন্য
+
+  output: "export",
+
+  webpack(config) {
+    config.resolve.alias["@"] = path.resolve(__dirname, "src");
+    return config;
+  },
 };
 
 module.exports = nextConfig;
