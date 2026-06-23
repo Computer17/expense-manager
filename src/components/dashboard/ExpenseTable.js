@@ -17,7 +17,7 @@ export default function ExpenseTable({ expenses, total }) {
               <th>#</th>
               <th>📅 তারিখ</th>
               <th>📝 বিবরণ</th>
-              <th>🏷️ ক্যাটাগরি</th>
+              <th>🏷️ রেফারেন্স</th>
               <th>💰 টাকা</th>
             </tr>
           </thead>
@@ -28,7 +28,7 @@ export default function ExpenseTable({ expenses, total }) {
                 <td>{exp.date}</td>
                 <td>{exp.details}</td>
                 <td>
-                  <span className="category-badge">{exp.category || '-'}</span>
+                  <span className="reference-badge">{exp.reference || '-'}</span>
                 </td>
                 <td><strong>{exp.amount}</strong></td>
               </tr>

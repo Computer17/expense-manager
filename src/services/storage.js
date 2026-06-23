@@ -1,4 +1,3 @@
-// ===== ইউজার =====
 export const getUsers = () => {
   if (typeof window === 'undefined') return [];
   return JSON.parse(localStorage.getItem('users') || '[]');
@@ -9,7 +8,6 @@ export const setUsers = (users) => {
   localStorage.setItem('users', JSON.stringify(users));
 };
 
-// ===== লগইন ইউজার =====
 export const getLoginUser = () => {
   if (typeof window === 'undefined') return null;
   return JSON.parse(localStorage.getItem('loginUser') || 'null');
@@ -25,7 +23,6 @@ export const clearLoginUser = () => {
   localStorage.removeItem('loginUser');
 };
 
-// ===== টেবিল =====
 export const getTables = (email) => {
   if (typeof window === 'undefined') return [];
   return JSON.parse(localStorage.getItem(email + '_tables') || '[]');
@@ -61,7 +58,6 @@ export const setLastTable = (email, tableName) => {
   localStorage.setItem(email + '_lastTable', tableName);
 };
 
-// ===== প্রোফাইল =====
 export const getUserProfile = (email) => {
   if (typeof window === 'undefined') return null;
   return JSON.parse(localStorage.getItem(email + '_profile') || 'null');
@@ -72,7 +68,6 @@ export const setUserProfile = (email, profile) => {
   localStorage.setItem(email + '_profile', JSON.stringify(profile));
 };
 
-// ===== থিম =====
 export const getTheme = () => {
   if (typeof window === 'undefined') return 'light';
   return localStorage.getItem('theme') || 'light';

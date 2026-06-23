@@ -7,7 +7,6 @@ import Sidebar from '@/components/dashboard/Sidebar';
 import ExpenseForm from '@/components/dashboard/ExpenseForm';
 import ExpenseTable from '@/components/dashboard/ExpenseTable';
 import FilterBar from '@/components/dashboard/FilterBar';
-import CategoryChart from '@/components/dashboard/CategoryChart';
 import { downloadExpensesAsExcel } from '@/services/excel';
 import { FaPlus, FaFileExcel, FaTrash } from 'react-icons/fa';
 
@@ -16,7 +15,7 @@ export default function Dashboard() {
   const { tables, currentTable, expenses, createTable, deleteTable } = useTables();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [newTableName, setNewTableName] = useState('');
-  const [filter, setFilter] = useState({ startDate: '', endDate: '', category: '' });
+  const [filter, setFilter] = useState({ startDate: '', endDate: '', reference: '' });
 
   const filteredExpenses = useMemo(() => {
     let filtered = [...expenses];
@@ -26,8 +25,10 @@ export default function Dashboard() {
     if (filter.endDate) {
       filtered = filtered.filter((e) => e.date <= filter.endDate);
     }
-    if (filter.category) {
-      filtered = filtered.filter((e) => e.category === filter.category);
+    if (filter.reference) {
+      filtered = filtered.filter((e) => 
+        e.reference && e.reference.toLowerCase().includes(filter.reference.toLowerCase())
+      );
     }
     return filtered;
   }, [expenses, filter]);
@@ -118,13 +119,6 @@ export default function Dashboard() {
                   </div>
                   <ExpenseTable expenses={filteredExpenses} total={total} />
                 </section>
-
-                {filteredExpenses.length > 0 && (
-                  <section className="card">
-                    <h3>📊 ক্যাটাগরি ভিত্তিক খরচ</h3>
-                    <CategoryChart expenses={filteredExpenses} />
-                  </section>
-                )}
               </>
             ) : (
               <div className="card empty-state">

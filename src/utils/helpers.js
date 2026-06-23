@@ -21,8 +21,3 @@ export const isValidAmount = (val) => {
   const num = parseFloat(val);
   return !isNaN(num) && num > 0;
 };
-
-export const truncateText = (text, maxLen = 20) => {
-  if (text.length <= maxLen) return text;
-  return text.slice(0, maxLen) + '...';
-};

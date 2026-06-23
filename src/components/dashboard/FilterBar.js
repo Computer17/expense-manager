@@ -1,21 +1,20 @@
 import { useState } from 'react';
-import { CATEGORIES } from '@/constants';
 import { FaFilter, FaRedo } from 'react-icons/fa';
 
 export default function FilterBar({ onFilter }) {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [category, setCategory] = useState('');
+  const [reference, setReference] = useState('');
 
   const applyFilter = () => {
-    onFilter({ startDate, endDate, category });
+    onFilter({ startDate, endDate, reference });
   };
 
   const resetFilter = () => {
     setStartDate('');
     setEndDate('');
-    setCategory('');
-    onFilter({ startDate: '', endDate: '', category: '' });
+    setReference('');
+    onFilter({ startDate: '', endDate: '', reference: '' });
   };
 
   return (
@@ -38,13 +37,13 @@ export default function FilterBar({ onFilter }) {
           />
         </div>
         <div className="filter-group">
-          <label>ক্যাটাগরি</label>
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="">সব</option>
-            {CATEGORIES.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
+          <label>রেফারেন্স</label>
+          <input
+            type="text"
+            placeholder="রেফারেন্স লিখুন"
+            value={reference}
+            onChange={(e) => setReference(e.target.value)}
+          />
         </div>
         <div className="filter-actions">
           <button onClick={applyFilter} className="btn-primary">

@@ -1,18 +1,12 @@
 /** @type {import('next').NextConfig} */
-
-const path = require("path");
-
 const nextConfig = {
   reactStrictMode: true,
-
+  swcMinify: true,
+  output: 'export',
   images: {
     unoptimized: true,
   },
-
-  webpack(config) {
-    config.resolve.alias["@"] = path.resolve(__dirname, "src");
-    return config;
-  },
+  distDir: 'out',
 };
 
 module.exports = nextConfig;

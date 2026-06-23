@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { CATEGORIES, DEFAULT_CATEGORY } from '@/constants';
 import { useTables } from '@/context/TableContext';
 import { FaPlus } from 'react-icons/fa';
 
@@ -8,7 +7,7 @@ export default function ExpenseForm() {
   const [date, setDate] = useState('');
   const [details, setDetails] = useState('');
   const [amount, setAmount] = useState('');
-  const [category, setCategory] = useState(DEFAULT_CATEGORY);
+  const [reference, setReference] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,13 +19,13 @@ export default function ExpenseForm() {
       date: date.trim(),
       details: details.trim(),
       amount: parseFloat(amount),
-      category,
+      reference: reference.trim(),
     });
     if (success) {
       setDate('');
       setDetails('');
       setAmount('');
-      setCategory(DEFAULT_CATEGORY);
+      setReference('');
     }
   };
 
@@ -36,8 +35,7 @@ export default function ExpenseForm() {
         <div className="form-group">
           <label>📅 তারিখ</label>
           <input
-            type="text"
-            placeholder="যেমন: 22-06-2026"
+            type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required
@@ -66,12 +64,13 @@ export default function ExpenseForm() {
           />
         </div>
         <div className="form-group">
-          <label>🏷️ ক্যাটাগরি</label>
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            {CATEGORIES.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
+          <label>🏷️ রেফারেন্স</label>
+          <input
+            type="text"
+            placeholder="যেমন: বিল নং-১২৩, চালান নং-৪৫৬"
+            value={reference}
+            onChange={(e) => setReference(e.target.value)}
+          />
         </div>
         <div className="form-group" style={{ alignSelf: 'flex-end' }}>
           <button type="submit" className="btn-success">

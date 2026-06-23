@@ -318,7 +318,7 @@ tr.even { background: var(--bg); opacity: 0.5; }
 tr.odd { background: transparent; }
 tr:hover td { background: var(--primary-light); opacity: 0.3; }
 
-.category-badge {
+.reference-badge {
   display: inline-block; padding: 4px 12px;
   border-radius: 30px; background: var(--primary-light);
   color: var(--primary); font-size: 0.8rem;
@@ -337,12 +337,6 @@ tr:hover td { background: var(--primary-light); opacity: 0.3; }
   align-items: center; flex-wrap: wrap; gap: 12px;
 }
 .action-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
-
-/* ===== চার্ট ===== */
-.chart-container {
-  max-width: 550px; margin: 20px auto;
-  padding: 10px;
-}
 
 /* ===== রেসপন্সিভ ===== */
 @media (max-width: 768px) {
